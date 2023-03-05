@@ -13,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -28,15 +29,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState()).background(color = Color(0xFFF2F2F2)).fillMaxSize()) {
-                Image(painter = painterResource(id = R.drawable.food), contentDescription =null, contentScale = ContentScale.Crop)
+            Column(modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .background(color = Color(0xFFF2F2F2))
+                .fillMaxWidth()) {
+                Image(painterResource(id = R.drawable.food), contentDescription =null, contentScale = ContentScale.Crop, modifier = Modifier.align(Alignment.CenterHorizontally))
                 Column(modifier = Modifier.padding(16.dp)) {
-                    Text(text = "Happy Meal", style = TextStyle(fontSize = TextUnit.Companion.Unspecified))
-                    Spacer(modifier = Modifier.padding(top = 10.dp))
-                    Text(text = "800 Calories")
-                    Spacer(modifier = Modifier.padding(top = Dp(10F)))
-                    Text(text = "$6.99", style = TextStyle(color = Color.Green ))
+                    Row( modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround){
+                        Text(text = "Happy Meal", style = TextStyle(fontSize = TextUnit.Companion.Unspecified), modifier = Modifier.align(Alignment.CenterVertically))
+                        Text(text = "800 Calories")
+                        Text(text = "$6.99", style = TextStyle(color = Color.Green ))
+                    }
                 }
+                Spacer(modifier = Modifier.padding(top = Dp(10F)))
+
+                Button(onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.CenterHorizontally)) {
+                    Text(text = "ORDER NOW")
+
+                }
+
             }
 //            DeployTheme {
 //                // A surface container using the 'background' color from the theme
